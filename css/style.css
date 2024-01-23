@@ -47,20 +47,23 @@ DEBUG---------------------------------------------------------
 }
  */
 
+header {
+  height: 80px;
+}
 .link-no-style {
   color: inherit;
   text-decoration: none;
 }
 
 .container-fluid {
-  min-height: 100vh;
+  height: calc(100vh - 130px);
   background-color: #001627;
 }
 
 #game-board {
   border: 3px solid white;
-  width: 700px;
-  height: 700px;
+  width: 600px;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,4 +81,8 @@ DEBUG---------------------------------------------------------
 
 .box.clicked {
   background-color: aquamarine;
+}
+
+footer {
+  height: 50px;
 }
