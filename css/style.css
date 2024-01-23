@@ -21,10 +21,7 @@ li {
   display: inline-block;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+
 
 UTILS------------------------------------------------------
 .container {
@@ -49,3 +46,8 @@ DEBUG---------------------------------------------------------
   border: 3px dashed red;
 }
  */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
