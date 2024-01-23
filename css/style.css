@@ -47,7 +47,35 @@ DEBUG---------------------------------------------------------
 }
  */
 
-a {
+.link-no-style {
   color: inherit;
   text-decoration: none;
+}
+
+.container-fluid {
+  min-height: 100vh;
+  background-color: #001627;
+}
+
+#game-board {
+  border: 3px solid white;
+  width: 700px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.box {
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+}
+
+.box.clicked {
+  background-color: aquamarine;
 }
