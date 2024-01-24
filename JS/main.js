@@ -33,14 +33,15 @@ function generateGameBoard(container, bombsLet) {
   gameBoard.innerHTML = "";
 
   const numberCell = parseInt(inputLevel.value);
+  const freeCells = numberCell - bombsLet.length;
   for (let i = 1; i < numberCell + 1; i++) {
-    const cell = generateCell(i, numberCell, bombsLet);
+    const cell = generateCell(i, numberCell, bombsLet, freeCells);
     container.append(cell);
   }
 }
 
 /* GENERATE CELL */
-function generateCell(text, cellNumber, bombsLet) {
+function generateCell(text, cellNumber, bombsLet, freeCells) {
   const singleCell = document.createElement("div");
   singleCell.classList.add("box");
   singleCell.classList.add("box-" + cellNumber);
@@ -58,6 +59,10 @@ function generateCell(text, cellNumber, bombsLet) {
         /* NON HO CLICCATO SU UNA BOMBA */
         singleCell.classList.add("nobomb");
         score++;
+
+        if (freeCells == score) {
+          endGame(true, score);
+        }
       }
     }
   });
