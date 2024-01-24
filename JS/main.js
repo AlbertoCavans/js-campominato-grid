@@ -4,6 +4,8 @@ const startButton = document.querySelector(".btn");
 const inputLevel = document.getElementById("inputLevel");
 
 let bombsLet;
+let gameOver = true;
+let score;
 
 startGame(gameBoard, inputLevel);
 
@@ -20,6 +22,8 @@ startButton.addEventListener("click", function () {
 function startGame(gameBoard, inputLevel) {
   const numberCell = parseInt(inputLevel.value);
   bombsLet = createBombs(numberCell);
+  gameOver = false;
+  score = 0;
   console.log("bombs", bombsLet);
   generateGameBoard(gameBoard, bombsLet);
 }
@@ -42,24 +46,20 @@ function generateCell(text, cellNumber, bombsLet) {
   singleCell.classList.add("box-" + cellNumber);
   /*   singleCell.innerText = text; */
   singleCell.addEventListener("click", function () {
-    console.log(text);
+    const isCellClicked =
+      this.classList.contains("bomb") || this.classList.contains("nobomb");
+    if (!gameOver && !isCellClicked) {
+      if (bombsLet.includes(text)) {
+        /* HO CLICCATO SU UNA BOMBA */
+        singleCell.classList.add("bomb");
 
-    if (bombsLet.includes(text)) {
-      /* HO CLICCATO SU UNA BOMBA */
-      singleCell.classList.add("bomb");
-      alert("Hai perso, fai click su 'Nuova partita' per riprovare");
-      gameBoard.classList.add("d-none");
-      gameBoard.classList.remove("d-flex");
-      startButton.addEventListener("click", function () {
-        startGame(gameBoard, inputLevel);
-      });
-    } else {
-      /* NON HO CLICCATO SU UNA BOMBA */
-      singleCell.classList.add("nobomb");
+        endGame(false, score);
+      } else {
+        /* NON HO CLICCATO SU UNA BOMBA */
+        singleCell.classList.add("nobomb");
+        score++;
+      }
     }
-    /*         this.classList.toggle("nobomb");
-    const cellIndex = this.getAttribute(text);
-    console.log(cellIndex, bombsLet); */
   });
 
   return singleCell;
@@ -76,4 +76,16 @@ function createBombs(maxBombs) {
     }
   }
   return arrayBombs;
+}
+
+function endGame(win, score) {
+  gameOver = true;
+  let message;
+  if (win) {
+    message = "Hai vinto con " + score + " punti";
+  } else {
+    message = "Hai perso con " + score + " punti";
+  }
+
+  alert(message);
 }
