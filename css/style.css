@@ -71,13 +71,26 @@ header {
 }
 
 .box {
-  width: calc(100% / 10);
-  height: calc(100% / 10);
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid black;
   color: black;
+}
+
+.box-100 {
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+}
+
+.box-81 {
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+}
+
+.box-49 {
+  width: calc(100% / 7);
+  height: calc(100% / 7);
 }
 
 .box.clicked {
