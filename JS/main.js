@@ -54,14 +54,14 @@ function generateCell(text, cellNumber, bombsLet, freeCells) {
         /* HO CLICCATO SU UNA BOMBA */
         singleCell.classList.add("bomb");
 
-        endGame(false, score);
+        endGame(false, score, bombsLet);
       } else {
         /* NON HO CLICCATO SU UNA BOMBA */
         singleCell.classList.add("nobomb");
         score++;
 
         if (freeCells == score) {
-          endGame(true, score);
+          endGame(true, score, bombsLet);
         }
       }
     }
@@ -83,13 +83,24 @@ function createBombs(maxBombs) {
   return arrayBombs;
 }
 
-function endGame(win, score) {
+function endGame(win, score, bombsLet) {
   gameOver = true;
   let message;
   if (win) {
     message = "Hai vinto con " + score + " punti";
   } else {
     message = "Hai perso con " + score + " punti";
+  }
+
+  const allCells = document.getElementsByClassName("box");
+  for (let i = 0; i < allCells.length; i++) {
+    const cell = allCells[i];
+    const text = cell.getAttribute("data-index");
+
+    console.log(bombsLet, text);
+    if (bombsLet.include(text)) {
+      cell.classList.add("bomb");
+    }
   }
 
   alert(message);
